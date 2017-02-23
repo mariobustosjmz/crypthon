@@ -2,13 +2,12 @@
 # -*- coding: utf-8 -*-
 import commands
 
-
 debug = False
  
-# Cifrado por sustitucion CESAR OPTIMIZADO
- 
+########## Cifrado por sustitucion CESAR OPTIMIZADO ##########
+
+#Devuelve una lista con mayusculas, minuscula, numeros y un espacio
 def get_alfabeto():
-    """Devuelve una lista con mayusculas, minuscula, numeros y un espacio"""
 
     alfabeto = []
  
@@ -30,16 +29,15 @@ def get_alfabeto():
     #print len(alfabeto) = 63 elementos
     return alfabeto
      
-     
+   
  
+#Devuelve un indice valido dentro de un rango, evitando desbordamiento
 def get_index(index = 0, largo = 0):
-    """Devuelve un indice valido dentro de un rango, evitando desbordamiento"""
      
     min_index = 0               # indice minimo
     max_index = largo - 1       # indice maximo = longitud - 1
  
     while True:
-         
         # index excede el limite superior
         if index > max_index:
             index -= largo
@@ -57,24 +55,21 @@ def get_index(index = 0, largo = 0):
  
  
  
+#Cifra un mensaje usando sustitucion
 def crypt(mensaje = "", llave = 0):
-    """Cifra un mensaje usando sustitucion"""
      
     encriptado = ""                   # mensaje cifrado
- 
     alfabeto = get_alfabeto()         # todo el alfabeto
     largo = len(alfabeto)             # longitud del alfabeto
     index = 0                         # indice de la letra en el alfabeto
  
     for caracter in mensaje:
- 
         # se obtiene el indice de caracter dentro de alfabeto, si existe
         try:        
             index = alfabeto.index(caracter)  # indice dentro del alfabeto
         except:
             print "No existe %s en el alfabeto creado" % (caracter,)
             continue
- 
  
         # se obtiene la nueva posicion, evitando desbordamiento
         move = index + llave      # nueva posicion
@@ -93,19 +88,16 @@ def crypt(mensaje = "", llave = 0):
     return encriptado
  
 
-
  
+#Decifra un mensaje usando sustitucion 
 def decrypt(mensaje = "", llave = 0):
-    """Decifra un mensaje usando sustitucion"""
      
     desencriptado = ""          # mensaje decifrado
- 
     alfabeto = get_alfabeto()   # alfabeto
     largo = len(alfabeto)      # longitud del alfabeto
     index = 0
  
     for caracter in mensaje:
- 
         try:
             index = alfabeto.index(caracter)  # indice dentro del alfabeto
         except:
@@ -119,7 +111,6 @@ def decrypt(mensaje = "", llave = 0):
         if debug:
             print "move %d"%(move,)
  
- 
         desencriptado += alfabeto[move] # agrega al mensaje decifrado
          
         #debug
@@ -129,10 +120,6 @@ def decrypt(mensaje = "", llave = 0):
     return desencriptado
  
  
-
-
-
-
 # inicio
 print "\n"
 print "===================================================================="
